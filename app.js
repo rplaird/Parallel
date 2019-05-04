@@ -5,25 +5,26 @@ const path = require("path");
 const fetchWorkerScript = path.join(__dirname, "./workers/fetch_worker.js");
 const appendWorkerScript = path.join(__dirname, "./workers/append_worker.js");
 
-args = argsHelper.getArgs()
+args = argsHelper.getArgs();
+
+if ( !argsHelper.validateArgs(args)){
+    args.help();
+}
 
 if (!args.connections) args.connections = 4;
 if (!args.chunksize) args.chunksize = 50000;
-
-if (!args.url) {
-    console.error('--url not specified');
-    process.exit(1);
- }
-
-console.log('fetching  %s in %i sized chunks with %i connections', args.url, args.chunksize, args.connections);
+if (!args.output) args.output = "output.png";
 
 var content = {
     connections: args.connections,
     url: args.url,
-    chunksize: args.chunksize
+    chunksize: args.chunksize,
+    output: args.output
 }
 
 var waitingForConnectionsToFinish = args.connections;
+
+console.log('fetching  %s in %i sized chunks with %i connections', args.url, args.chunksize, args.connections);
 
 for (var i = 0; i < args.connections; i++) {
     content.connection = i;
@@ -34,7 +35,7 @@ for (var i = 0; i < args.connections; i++) {
 function onResult() {
     waitingForConnectionsToFinish--;
     if (waitingForConnectionsToFinish <= 0) {
-        const worker = new Worker(appendWorkerScript, { workerData: args.connections });
+        const worker = new Worker(appendWorkerScript, { workerData: content });
         worker.on("exit", () => console.log('done'));
     }
 }

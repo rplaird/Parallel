@@ -2,7 +2,7 @@ const fs = require('fs')
 const { parentPort, workerData, isMainThread } = require("worker_threads");
 
 if (!isMainThread) {
-    appendPart(0, workerData);
+    appendPart(0, workerData.connections);
 }
 
 function appendPart(partNumber, numParts) {
@@ -13,7 +13,7 @@ function appendPart(partNumber, numParts) {
             if (err) {
                 throw err;
             }
-            fs.appendFile('result.png', data, (err) => {
+            fs.appendFile(workerData.output, data, (err) => {
                 if (err) {
                     throw err;
                 }
