@@ -31,13 +31,13 @@ module.exports = {
         var success = true;
 
         if (!args.connections) args.connections = DEFAULT_CONNECTIONS;
-        else if (isNaN(args.connections) || args.connections === true) {
+        else if ( args.connections === true ) {
             console.log("--connections is invalid or blank.");
             success = false;
         }
 
         if (!args.chunksize) args.chunksize = DEFAULT_CHUNKSIZE;
-        else if (isNaN(args.chunksize) || args.chunksize === true) {
+        else if ( args.chunksize === true ) {
             console.log("--chunksize is invalid or blank.");
             success = false;
         }
