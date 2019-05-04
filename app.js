@@ -11,10 +11,6 @@ if ( !argsHelper.validateArgs(args)){
     args.help();
 }
 
-if (!args.connections) args.connections = 4;
-if (!args.chunksize) args.chunksize = 50000;
-if (!args.output) args.output = "output.png";
-
 var content = {
     connections: args.connections,
     url: args.url,
