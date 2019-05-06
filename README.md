@@ -24,3 +24,7 @@ to utilize all available bandwidth.
 # >  /parallel$ node app.js --url http://22222i.imgur.com/z4d4kWk.jpg --chunksize 1048576
 # >  /parallel$ node app.js --url http://22222i.imgur.com/z4d4kWk.jpg --output catpic.png
 ```
+
+## Notes
+
+connections * chunksize should equal or exceed the actual file size to ensure file is complete !
