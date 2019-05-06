@@ -7,9 +7,9 @@ to utilize all available bandwidth.
 
 ## Technologies
 
-[commander](https://github.com/tj/commander.js) commandline helper
-[workers](https://nodejs.org/api/worker_threads.html) nodejs threads
-[request](https://github.com/request/request) http request library
+[commander](https://github.com/tj/commander.js) commandline helper.   
+[workers](https://nodejs.org/api/worker_threads.html) nodejs workers.   
+[request](https://github.com/request/request) http request library.   
 
 ## First time setup
 ```bash
